@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Toolora - Free online content creator, office and video tools. Simple, fast and mobile-friendly utilities.">
+<meta name="theme-color" content="#10101c">
+<title>Toolora - Free Online Tools</title>
+<style>
+:root{--bg:#f5f6fb;--card:#fff;--text:#171827;--muted:#777b91;--line:#e8e9f1;--accent:#7057ff;--soft:#eeeaff;--shadow:0 8px 30px #2221}
+.dark{--bg:#10101c;--card:#1b1b2b;--text:#f4f4fb;--muted:#a4a5b8;--line:#303044;--accent:#9b87ff;--soft:#30284c;--shadow:0 8px 30px #0003}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;transition:.2s}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+header{height:68px;background:var(--card);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:10}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1px;color:var(--accent)}
+.logo span{color:var(--text)}
+.header-right{display:flex;gap:10px;align-items:center}
+.icon-btn{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:12px;padding:10px 13px}
+.hero{padding:55px 18px 35px;text-align:center;background:radial-gradient(circle at 50% 0%,var(--soft),transparent 65%)}
+.tag{display:inline-block;padding:7px 13px;border-radius:30px;background:var(--soft);color:var(--accent);font-size:12px;font-weight:800}
+.hero h1{font-size:clamp(32px,6vw,54px);line-height:1.08;letter-spacing:-2px;margin:18px auto 12px;max-width:750px}
+.hero h1 span{color:var(--accent)}
+.hero p{color:var(--muted);max-width:570px;margin:0 auto 25px;line-height:1.7}
+.search{max-width:590px;margin:auto;position:relative}
+.search input{width:100%;padding:16px 18px 16px 48px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--text);outline:none;box-shadow:var(--shadow)}
+.search input:focus{border-color:var(--accent)}
+.search-icon{position:absolute;left:17px;top:14px;color:var(--muted)}
+main{max-width:1150px;margin:auto;padding:25px 18px 60px}
+.ad{max-width:970px;min-height:75px;margin:15px auto 28px;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
+.categories{display:flex;gap:9px;overflow-x:auto;padding:8px 0 20px;scrollbar-width:none}
+.categories button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--text);padding:10px 17px;border-radius:30px;font-weight:700}
+.categories button.active{background:var(--accent);border-color:var(--accent);color:white}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:25px 0 15px}
+.section-head h2{font-size:21px;margin:0;letter-spacing:-.5px}
+.section-head small{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:19px;text-align:left;color:var(--text);transition:.2s;min-height:150px;box-shadow:0 3px 12px #00000005}
+.tool:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:var(--shadow)}
+.tool-icon{width:43px;height:43px;border-radius:13px;background:var(--soft);display:grid;place-items:center;font-size:21px;margin-bottom:13px}
+.tool h3{font-size:15px;margin:0 0 7px}
+.tool p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+.tool .open{display:block;color:var(--accent);font-size:12px;font-weight:800;margin-top:13px}
+.workspace{display:none;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin:25px 0;box-shadow:var(--shadow)}
+.workspace.show{display:block}
+.work-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.work-head h2{font-size:21px;margin:0}
+.close{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:10px;padding:8px 12px}
+.field{margin:15px 0}
+.field label{display:block;font-size:13px;font-weight:750;margin-bottom:8px}
+.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:12px;padding:12px;outline:none}
+.field textarea{min-height:120px;resize:vertical;line-height:1.5}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.primary,.secondary{border:0;border-radius:11px;padding:12px 17px;font-weight:800}
+.primary{background:var(--accent);color:white}
+.secondary{background:var(--soft);color:var(--accent)}
+.output{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);padding:15px;border-radius:12px;min-height:65px;margin-top:15px;line-height:1.6;overflow-wrap:anywhere}
+.output:empty{display:none}
+.stats{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:10px}
+video{width:100%;max-height:420px;background:#090910;border-radius:14px;margin-top:10px}
+footer{border-top:1px solid var(--line);background:var(--card);padding:35px 18px;text-align:center;color:var(--muted);font-size:13px}
+footer .logo{margin-bottom:10px}
+footer a{color:var(--accent);text-decoration:none;margin:0 8px}
+.page{display:none;max-width:850px;margin:30px auto;padding:25px;background:var(--card);border:1px solid var(--line);border-radius:18px;line-height:1.8}
+.page.show{display:block}
+.page h2{margin-top:0}
+.empty{padding:30px;text-align:center;color:var(--muted);grid-column:1/-1}
+@media(max-width:750px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tool{padding:14px;min-height:145px}.hero{padding-top:40px}.hero h1{letter-spacing:-1.5px}.workspace{padding:16px}}
+@media(max-width:390px){.grid{grid-template-columns:1fr}.tool{min-height:auto}.hero h1{font-size:32px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Tool<span>ora.</span></div>
+  <div class="header-right">
+    <button class="icon-btn" onclick="home()" aria-label="Home">⌂</button>
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">☼</button>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="tag">✦ YOUR EVERYDAY DIGITAL TOOLKIT</span>
+  <h1>Make your work <span>easier.</span><br>Get more done.</h1>
+  <p>Free online tools for creators, students, professionals and everyone. No complicated setup.</p>
+  <div class="search">
+    <span class="search-icon">⌕</span>
+    <input id="search" placeholder="Search tools... e.g. word counter" oninput="renderTools()">
+  </div>
+</section>
+
+<main id="homeMain">
+  <div class="ad">ADVERTISEMENT</div>
+  <div class="categories">
+    <button class="active" data-cat="All" onclick="setCat('All',this)">All Tools</button>
+    <button data-cat="Creator" onclick="setCat('Creator',this)">🎨 Creator Tools</button>
+    <button data-cat="Office" onclick="setCat('Office',this)">📁 Office Tools</button>
+    <button data-cat="Video" onclick="setCat('Video',this)">🎬 Video Tools</button>
+  </div>
+  <div class="section-head"><h2 id="listTitle">Explore Free Tools</h2><small id="toolCount"></small></div>
+  <div class="grid" id="toolGrid"></div>
+  <div class="ad">ADVERTISEMENT</div>
+
+  <section class="workspace" id="workspace">
+    <div class="work-head"><h2 id="workTitle">Tool</h2><button class="close" onclick="closeTool()">✕ Close</button></div>
+    <div id="workBody"></div>
+  </section>
+</main>
+
+<section class="page" id="about">
+<h2>About Toolora</h2>
+<p>Toolora is a collection of simple online tools designed to help content creators, students and professionals complete everyday tasks more easily.</p>
+<p>Our goal is to make useful digital utilities accessible on mobile and desktop devices.</p>
+</section>
+<section class="page" id="privacy">
+<h2>Privacy Policy</h2>
+<p>Toolora provides browser-based tools. Many tools process the text or files you select locally in your browser. We do not intentionally upload those inputs to a server through this website's current tools.</p>
+<p>Our hosting provider and any advertising or analytics services you add later may collect technical information according to their own policies. Update this policy before enabling advertising or analytics.</p>
+<p>Contact: replace-this-with-your-email@example.com</p>
+</section>
+<section class="page" id="terms">
+<h2>Terms of Use</h2>
+<p>Toolora is provided for general informational and productivity purposes. Use the tools at your own discretion. Always verify important calculations, documents and generated content before relying on them.</p>
+<p>Do not use the website for unlawful activity or upload sensitive information to services you do not trust.</p>
+</section>
+<section class="page" id="contact">
+<h2>Contact</h2>
+<p>For questions, feedback or support, contact:</p>
+<p><strong>Email:</strong> replace-this-with-your-email@example.com</p>
+<p>Replace this placeholder with an email address you control before publishing.</p>
+</section>
+
+<footer>
+  <div class="logo">Toolora.</div>
+  <p>Simple tools. Smarter work.</p>
+  <p>
+    <a href="#about" onclick="showPage('about')">About</a>
+    <a href="#privacy" onclick="showPage('privacy')">Privacy</a>
+    <a href="#terms" onclick="showPage('terms')">Terms</a>
+    <a href="#contact" onclick="showPage('contact')">Contact</a>
+  </p>
+  <p>© <span id="year"></span> Toolora. All rights reserved.</p>
+</footer>
+
+<script>
+const tools=[
+{n:"Caption Generator",c:"Creator",i:"✍️",d:"Create social media captions.",type:"caption"},
+{n:"Hashtag Generator",c:"Creator",i:"#️⃣",d:"Get hashtag ideas for your post.",type:"hashtags"},
+{n:"YouTube Title Generator",c:"Creator",i:"▶️",d:"Generate clickable video title ideas.",type:"titles"},
+{n:"YouTube Description",c:"Creator",i:"📝",d:"Create a video description template.",type:"description"},
+{n:"Short Video Script",c:"Creator",i:"🎬",d:"Create a simple short-video script.",type:"script"},
+{n:"Viral Hook Ideas",c:"Creator",i:"🪝",d:"Get attention-grabbing opening lines.",type:"hooks"},
+{n:"Instagram Bio Generator",c:"Creator",i:"👤",d:"Create a profile bio idea.",type:"bio"},
+{n:"Thumbnail Text Ideas",c:"Creator",i:"🖼️",d:"Find short thumbnail text ideas.",type:"thumbnail"},
+{n:"Content Calendar",c:"Creator",i:"📅",d:"Create a simple posting plan.",type:"calendar"},
+{n:"Reels Ideas",c:"Creator",i:"💡",d:"Get short-video topic ideas.",type:"reels"},
+{n:"Keyword Ideas",c:"Creator",i:"🔎",d:"Brainstorm content keywords.",type:"keywords"},
+{n:"Word Counter",c:"Office",i:"🔢",d:"Count words, characters and sentences.",type:"words"},
+{n:"Text Formatter",c:"Office",i:"🔠",d:"Change text case and clean spaces.",type:"formatter"},
+{n:"Quick Notes",c:"Office",i:"📒",d:"Write and download simple notes.",type:"notes"},
+{n:"CSV Viewer",c:"Office",i:"📊",d:"Open and preview CSV files.",type:"csv"},
+{n:"JSON Formatter",c:"Office",i:"{ }",d:"Format and validate JSON text.",type:"json"},
+{n:"Percentage Calculator",c:"Office",i:"％",d:"Calculate percentage and values.",type:"percentage"},
+{n:"Invoice Calculator",c:"Office",i:"🧾",d:"Calculate a basic invoice total.",type:"invoice"},
+{n:"Meeting Notes",c:"Office",i:"📋",d:"Create and download meeting notes.",type:"meeting"},
+{n:"Video Preview Studio",c:"Video",i:"🎞️",d:"Preview a local video with settings.",type:"video"},
+{n:"Video Frame Capture",c:"Video",i:"📸",d:"Capture a frame from your video.",type:"frame"}
+];
+let category="All";
+const grid=document.getElementById("toolGrid");
+function renderTools(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const found=tools.filter(t=>(category==="All"||t.c===category)&&(t.n+" "+t.d+" "+t.c).toLowerCase().includes(q));
+ document.getElementById("toolCount").textContent=found.length+" tools";
+ document.getElementById("listTitle").textContent=category==="All"?"Explore Free Tools":category+" Tools";
+ grid.innerHTML=found.length?found.map(t=>`<button class="tool" onclick="openTool('${t.type}')"><div class="tool-icon">${t.i}</div><h3>${t.n}</h3><p>${t.d}</p><span class="open">Open tool →</span></button>`).join(""):'<div class="empty">No tools found. Try another search.</div>';
+}
+function setCat(c,b){category=c;document.querySelectorAll(".categories button").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderTools();closeTool()}
+function toggleTheme(){document.body.classList.toggle("dark");localStorage.setItem("toolora-theme",document.body.classList.contains("dark")?"dark":"light")}
+if(localStorage.getItem("toolora-theme")==="dark")document.body.classList.add("dark");
+document.getElementById("year").textContent=new Date().getFullYear();
+function home(){document.getElementById("homeMain").style.display="block";document.querySelectorAll(".page").forEach(p=>p.classList.remove("show"));window.scrollTo({top:0,behavior:"smooth"})}
+function showPage(id){document.getElementById("homeMain").style.display="none";document.querySelectorAll(".page").forEach(p=>p.classList.remove("show"));document.getElementById(id).classList.add("show");window.scrollTo({top:0,behavior:"smooth"})}
+function closeTool(){document.getElementById("workspace").classList.remove("show")}
+function field(label,id,placeholder="",area=false){return `<div class="field"><label>${label}</label>${area?`<textarea id="${id}" placeholder="${placeholder}"></textarea>`:`<input id="${id}" placeholder="${placeholder}">`}</div>`}
+function selectField(label,id,options){return `<div class="field"><label>${label}</label><select id="${id}">${options.map(x=>`<option>${x}</option>`).join("")}</select></div>`}
+function button(label,fn="runTool()"){return `<button class="primary" onclick="${fn}">${label}</button>`}
+function out(){return '<div class="output" id="output"></div><div class="actions"><button class="secondary" onclick="copyOutput()">Copy result</button><button class="secondary" onclick="downloadOutput()">Download TXT</button></div>'}
+let currentType="";
+function openTool(type){
+ currentType=type;
+ const t=tools.find(x=>x.type===type);
+ document.getElementById("workTitle").textContent=t.n;
+ let html="";
+ if(["caption","hashtags","titles","description","script","hooks","bio","thumbnail","calendar","reels","keywords"].includes(type)){
+  html=field("Topic or niche","topic","Enter your topic or subject")+
+  selectField("Platform / style","style",["Instagram","YouTube","Facebook","TikTok","Professional","General"])+
+  (type==="caption"?selectField("Tone","tone",["Engaging","Funny","Professional","Inspirational","Simple"]):"")+
+  button("Generate ideas")+out();
+ }else if(type==="words"){
+  html=field("Enter your text","text","Type or paste your text here...",true)+
+  '<div class="stats" id="wordStats">Words: 0 · Characters: 0 · Sentences: 0 · Reading time: 0 min</div>';
+ }else if(type==="formatter"){
+  html=field("Your text","text","Enter text...",true)+
+  selectField("Format","format",["UPPERCASE","lowercase","Title Case","Sentence case","Remove extra spaces","Reverse text"])+
+  button("Format text")+out();
+ }else if(type==="notes"||type==="meeting"){
+  html=field("Title","noteTitle","Enter title")+
+  field(type==="meeting"?"Meeting details and action points":"Your notes","noteText","Write here...",true)+
+  button("Save and prepare download")+out();
+ }else if(type==="csv"){
+  html='<div class="field"><label>Select a CSV file</label><input type="file" id="csvFile" accept=".csv,text/csv"></div><div id="csvResult"></div>';
+ }else if(type==="json"){
+  html=field("Paste JSON","jsonInput",'{"name":"Toolora"}',true)+button("Format JSON")+out();
+ }else if(type==="percentage"){
+  html=field("Total value","total","e.g. 500")+
+  field("Percentage (%)","percent","e.g. 20")+
+  button("Calculate")+out();
+ }else if(type==="invoice"){
+  html=field("Item / service","item","Example: Design service")+
+  field("Quantity","qty","1")+
+  field("Price per item (₹)","price","100")+
+  field("Tax percentage (%)","tax","0")+
+  button("Calculate invoice")+out();
+ }else if(type==="video"||type==="frame"){
+  html='<div class="field"><label>Choose a video from your device</label><input type="file" id="videoFile" accept="video/*"></div><video id="videoPlayer" controls playsinline></video>'+
+  '<div class="field"><label>Playback speed</label><select id="speed" onchange="setSpeed()"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option><option value="2">2x</option></select></div>'+
+  '<div class="field"><label>Preview aspect ratio</label><select id="ratio" onchange="setRatio()"><option value="16/9">16:9 Landscape</option><option value="9/16">9:16 Shorts / Reels</option><option value="1/1">1:1 Square</option></select></div>'+
+  field("Text overlay (preview only)","overlayText","Enter text to preview")+
+  '<div class="actions"><button class="secondary" onclick="setOverlay()">Update overlay</button><button class="primary" onclick="captureFrame()">Capture frame as PNG</button></div><p class="stats">Preview and frame capture only. This tool does not export an edited MP4.</p><canvas id="captureCanvas" style="display:none"></canvas><div id="videoMessage" class="output"></div>';
+ }
+ document.getElementById("workBody").innerHTML=html;
+ document.getElementById("workspace").classList.add("show");
+ document.getElementById("workspace").scrollIntoView({behavior:"smooth",block:"start"});
+ if(type==="words")document.getElementById("text").addEventListener("input",countWords);
+ if(type==="csv")document.getElementById("csvFile").addEventListener("change",loadCSV);
+ if(type==="video"||type==="frame")document.getElementById("videoFile").addEventListener("change",loadVideo);
+}
+function runTool(){
+ const get=id=>document.getElementById(id)?.value.trim()||"";
+ const topic=get("topic")||"your topic";
+ const style=get("style")||"General";
+ const tone=get("tone")||"Engaging";
+ let result="";
+ switch(currentType){
+ case "caption":result=`✨ ${topic} — ${tone} vibes!\n\nMake every moment count. Share your thoughts and let the world see your story.\n\nWhat do you think? Tell us in the comments!\n\n#${topic.replace(/\W+/g,"")} #ContentCreator #Explore #Trending`;break;
+ case "hashtags":result=[topic.replace(/\W+/g,""),"Trending","Explore","ContentCreator","DailyUpdates","Inspiration","Viral","NewPost","India","Follow"].map(x=>"#"+x).join(" ");break;
+ case "titles":result=[`You Need to Know This About ${topic}!`,`The Ultimate Guide to ${topic}`,`I Tried ${topic} — Here's What Happened`,`Top 5 Things About ${topic}`,`Don't Make This ${topic} Mistake!`].join("\n");break;
+ case "description":result=`Welcome back!\n\nIn this video, we're exploring ${topic}.\n\n👍 Like the video\n💬 Share your thoughts in the comments\n🔔 Subscribe for more content\n\nTopics covered:\n• ${topic}\n• Tips and ideas\n• Helpful information\n\n#${topic.replace(/\W+/g,"")} #YouTube #India`;break;
+ case "script":result=`[HOOK – 0 to 3 seconds]\n"Wait! Have you ever wondered about ${topic}?"\n\n[MAIN CONTENT – 3 to 20 seconds]\n"Here's something interesting. Let's understand ${topic} in a simple way. First, focus on the most important point. Then try it yourself."\n\n[ENDING – 20 to 30 seconds]\n"Did you know this? Comment below and follow for more!"`;break;
+ case "hooks":result=[`"Stop scrolling! Here's something about ${topic}."`,`"Most people don't know this about ${topic}."`,`"I wish I knew this earlier!"`,`"Wait until you see the result."`,`"Here are 3 things you should know."`].join("\n");break;
+ case "bio":result=`✨ Sharing ${topic}\n💡 Ideas | Creativity | Inspiration\n📍 ${style}\n👇 Follow for more updates`;break;
+ case "thumbnail":result=[`WAIT... WHAT?`,`THE TRUTH ABOUT ${topic.toUpperCase()}`,`YOU MUST SEE THIS`,`I WAS SHOCKED!`,`DON'T MISS THIS`].join("\n");break;
+ case "calendar":result=`7-DAY CONTENT PLAN: ${topic}\n\nDay 1: Introduction / beginner guide\nDay 2: 3 useful tips\nDay 3: Common mistakes\nDay 4: Behind the scenes\nDay 5: Frequently asked qu
