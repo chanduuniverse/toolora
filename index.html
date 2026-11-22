@@ -3,355 +3,428 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101827">
-<meta name="description" content="Toolora offers free online tools for calculations, text editing, passwords and everyday tasks.">
-<title>Toolora – Free Online Tools</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111426">
+<meta name="description" content="Toolora - Free online calculators, text tools, content creation tools, social media generators and video studio.">
+<title>Toolora - Free Online Tools & Creator Studio</title>
 
 <style>
 :root{
-  --bg:#f5f7fb;
-  --surface:#ffffff;
-  --text:#172033;
-  --muted:#718096;
-  --primary:#6758e8;
-  --primary2:#8b5cf6;
-  --border:#e8ebf2;
-  --shadow:0 12px 35px rgba(30,40,80,.07);
+--bg:#f5f6fc;--panel:#fff;--text:#171a2d;--muted:#777f94;
+--line:#e8eaf2;--primary:#715cf6;--soft:#f0edff;
+--shadow:0 12px 35px rgba(30,30,70,.07)
+}
+body.dark{
+--bg:#101322;--panel:#191e30;--text:#f4f5ff;
+--muted:#a0a7bb;--line:#2b3044;--soft:#292443;
+--shadow:0 12px 35px #0004
 }
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+font-family:Inter,system-ui,-apple-system,Arial,sans-serif;transition:.2s}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.topbar{
+height:68px;display:flex;align-items:center;justify-content:space-between;
+padding:0 max(18px,calc((100% - 1180px)/2));
+background:var(--panel);border-bottom:1px solid var(--line);
+position:sticky;top:0;z-index:20
 }
-header{
-  position:sticky;top:0;z-index:10;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
+.brand{font-size:25px;font-weight:900;letter-spacing:-1.3px}
+.brand span{color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{height:40px;width:40px;border:1px solid var(--line);
+border-radius:12px;background:var(--panel);color:var(--text);font-size:18px}
+.btn{
+border:0;border-radius:11px;padding:12px 17px;
+background:var(--primary);color:white;font-weight:750;
+transition:.2s
 }
-.nav{
-  max-width:1180px;margin:auto;padding:16px 22px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.logo{font-size:25px;font-weight:850;letter-spacing:-1px}
-.logo span{color:var(--primary)}
-.nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:22px}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn.soft{background:var(--soft);color:var(--primary)}
 .hero{
-  text-align:center;padding:65px 20px 38px;
-  background:radial-gradient(circle at 50% 0%,#e9e5ff 0%,#f5f7fb 60%);
+text-align:center;padding:65px 18px 42px;
+background:radial-gradient(ellipse at 50% 0%,#a99aff40,transparent 68%)
 }
-.tag{
-  display:inline-block;padding:8px 14px;border-radius:30px;
-  background:#eeeaff;color:#5d4ad6;font-size:12px;font-weight:700;
-}
-.hero h1{
-  font-size:clamp(35px,7vw,58px);line-height:1.08;
-  letter-spacing:-2px;margin:20px auto 14px;
-  max-width:750px;
-}
+.eyebrow{display:inline-block;padding:8px 13px;border-radius:30px;
+background:var(--soft);color:var(--primary);font-size:11px;
+font-weight:850;letter-spacing:1px}
+.hero h1{font-size:clamp(37px,7vw,62px);line-height:1.06;
+letter-spacing:-2.8px;margin:20px 0 13px}
 .hero h1 span{color:var(--primary)}
-.hero p{color:var(--muted);font-size:16px;max-width:570px;margin:auto;line-height:1.7}
+.hero p{max-width:590px;margin:auto;color:var(--muted);
+line-height:1.7;font-size:15px}
 .search{
-  max-width:570px;margin:28px auto 0;display:flex;
-  background:white;border:1px solid var(--border);
-  border-radius:15px;padding:7px;box-shadow:var(--shadow);
+display:flex;max-width:570px;margin:27px auto 0;padding:6px;
+background:var(--panel);border:1px solid var(--line);
+border-radius:15px;box-shadow:var(--shadow)
 }
-.search input{flex:1;min-width:0;border:0;outline:0;padding:12px;font-size:15px}
-.search button,.primary{
-  background:var(--primary);color:white;border:0;
-  border-radius:10px;padding:12px 19px;font-weight:700;cursor:pointer;
-}
+.search input{flex:1;min-width:0;border:0!important;
+background:transparent!important;padding:12px!important;
+color:var(--text);outline:none}
 .ad{
-  max-width:970px;min-height:75px;margin:24px auto;
-  border:1px dashed #cbd2df;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  color:#9aa3b4;font-size:12px;
+max-width:970px;min-height:75px;margin:22px auto;
+border:1px dashed var(--line);border-radius:12px;
+display:grid;place-items:center;color:var(--muted);font-size:11px
 }
-.container{max-width:1180px;margin:auto;padding:20px 22px 65px}
-.section-title{font-size:25px;letter-spacing:-.7px;margin-bottom:7px}
-.section-sub{color:var(--muted);margin:0 0 24px;font-size:14px}
-.categories{display:flex;gap:9px;overflow-x:auto;padding:2px 0 20px}
-.chip{
-  white-space:nowrap;border:1px solid var(--border);
-  background:white;padding:10px 16px;border-radius:30px;
-  font-size:13px;cursor:pointer;color:#586174;
-}
-.chip.active{background:#eeeaff;color:#5948d5;border-color:#d9d0ff}
-.grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:17px;
-}
-.tool{
-  background:white;border:1px solid var(--border);
-  border-radius:17px;padding:21px;cursor:pointer;
-  transition:.22s;box-shadow:0 3px 12px rgba(20,30,60,.025);
-}
-.tool:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d6ceff}
-.tool-icon{
-  width:45px;height:45px;border-radius:13px;
-  display:grid;place-items:center;font-size:22px;
-  background:#f0edff;margin-bottom:17px;
-}
-.tool h3{font-size:16px;margin:0 0 7px}
-.tool p{font-size:13px;color:var(--muted);line-height:1.5;margin:0}
-.tool small{display:inline-block;margin-top:14px;color:var(--primary);font-weight:700}
-.workspace{
-  display:none;background:white;border:1px solid var(--border);
-  border-radius:20px;padding:25px;margin-top:25px;box-shadow:var(--shadow);
-}
+.wrap{max-width:1180px;margin:auto;padding:22px 20px 65px}
+.heading{font-size:25px;letter-spacing:-.8px;margin:10px 0 5px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 20px}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:3px 0 19px}
+.chip{white-space:nowrap;border:1px solid var(--line);
+border-radius:30px;padding:9px 15px;background:var(--panel);
+color:var(--muted);font-size:12px}
+.chip.active{background:var(--soft);border-color:transparent;
+color:var(--primary);font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tool{background:var(--panel);border:1px solid var(--line);
+border-radius:17px;padding:18px;min-width:0;cursor:pointer;
+transition:.22s;box-shadow:var(--shadow)}
+.tool:hover{transform:translateY(-4px);border-color:#9d8cff}
+.tool-icon{width:43px;height:43px;border-radius:13px;
+display:grid;place-items:center;background:var(--soft);
+font-size:21px;margin-bottom:15px}
+.tool h3{font-size:14px;margin:0 0 7px}
+.tool p{font-size:12px;line-height:1.55;color:var(--muted);
+margin:0;min-height:37px}
+.open{font-size:12px;color:var(--primary);font-weight:800;margin-top:14px}
+.workspace{display:none;margin-top:25px;padding:23px;
+background:var(--panel);border:1px solid var(--line);
+border-radius:20px;box-shadow:var(--shadow)}
 .workspace.show{display:block}
-.workspace h2{margin:0 0 8px}
-.workspace>p{color:var(--muted);font-size:14px}
-textarea,input,select{
-  width:100%;padding:13px;border:1px solid var(--border);
-  border-radius:11px;font:inherit;outline:none;background:#fbfcff;
-  margin:9px 0;
+.worktop{display:flex;justify-content:space-between;
+gap:12px;align-items:center}
+.workspace h2{font-size:22px;margin:0}
+.workspace>p{color:var(--muted);font-size:13px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:12px;color:var(--muted);font-weight:700}
+.field input,.field textarea,.field select{
+width:100%;padding:13px;border:1px solid var(--line);
+border-radius:11px;background:var(--bg);color:var(--text);
+outline:none;min-width:0
 }
-textarea{min-height:125px;resize:vertical}
-textarea:focus,input:focus,select:focus{border-color:var(--primary)}
-.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
-.secondary{
-  background:#f0edff;color:#5948d5;border:0;
-  padding:11px 16px;border-radius:10px;font-weight:700;cursor:pointer;
-}
-.result{
-  background:#f6f7fb;border-radius:12px;padding:15px;
-  margin-top:14px;line-height:1.6;overflow-wrap:anywhere;
-}
-.stats{display:flex;gap:22px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:12px}
-.stats b{color:var(--primary)}
-footer{
-  border-top:1px solid var(--border);padding:30px 20px;
-  text-align:center;color:var(--muted);font-size:13px;
-}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{
+border-color:var(--primary)}
+.full{grid-column:1/-1}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.output{margin-top:16px;padding:15px;background:var(--bg);
+border:1px solid var(--line);border-radius:12px;
+white-space:pre-wrap;overflow-wrap:anywhere;
+font-size:14px;line-height:1.7}
+.output:empty{display:none}
+.video-stage{position:relative;width:100%;max-width:680px;
+margin:auto;background:#080a12;border-radius:14px;
+overflow:hidden;aspect-ratio:16/9;display:grid;place-items:center}
+.video-stage video{width:100%;height:100%;object-fit:contain}
+#videoOverlay{position:absolute;top:15%;left:5%;right:5%;
+text-align:center;color:white;font-size:clamp(18px,4vw,34px);
+font-weight:900;text-shadow:2px 2px 5px black;pointer-events:none}
+footer{border-top:1px solid var(--line);padding:32px 20px;
+text-align:center;color:var(--muted);font-size:12px}
 footer a{color:var(--primary);text-decoration:none;margin:0 8px}
-@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){
-  .grid{grid-template-columns:1fr 1fr;gap:10px}
-  .tool{padding:14px}
-  .tool-icon{width:39px;height:39px}
-  .tool h3{font-size:14px}
-  .tool p{font-size:12px}
-  .hero{padding-top:48px}
-  .nav a{margin-left:10px;font-size:12px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){
+.topbar{height:62px;padding:0 15px}
+.hero{padding:48px 16px 30px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tool{padding:14px}.tool-icon{width:38px;height:38px}
+.tool p{font-size:11px}.wrap{padding:18px 13px 50px}
+.fields{grid-template-columns:1fr}
+.hero h1{letter-spacing:-1.8px}
 }
 @media(max-width:360px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
-<header>
-  <div class="nav">
-    <div class="logo">tool<span>ora.</span></div>
-    <nav>
-      <a href="#tools">All Tools</a>
-      <a href="#about">About</a>
-    </nav>
-  </div>
+<header class="topbar">
+ <div class="brand">tool<span>ora.</span></div>
+ <div class="nav-actions">
+  <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">☾</button>
+  <a href="#tools" class="btn" style="text-decoration:none;padding:10px 14px;font-size:12px">Explore tools</a>
+ </div>
 </header>
 
 <section class="hero">
-  <span class="tag">✦ YOUR EVERYDAY DIGITAL TOOLKIT</span>
-  <h1>Everything you need.<br><span>One simple place.</span></h1>
-  <p>Free, fast and easy-to-use online tools. No registration. No unnecessary complications.</p>
-  <div class="search">
-    <input id="searchInput" placeholder="Search for a tool..." oninput="searchTools()">
-    <button onclick="searchTools()">Search</button>
-  </div>
+ <span class="eyebrow">✦ YOUR EVERYDAY DIGITAL TOOLKIT</span>
+ <h1>Work smarter.<br><span>Create more.</span></h1>
+ <p>Free online tools for your everyday tasks. Calculate, convert, write, create and simplify — all in one place.</p>
+ <div class="search">
+  <input id="search" placeholder="Search 32 free tools..." oninput="searchTools()">
+  <button class="btn" onclick="searchTools()">Search</button>
+ </div>
 </section>
 
 <div class="ad">ADVERTISEMENT SPACE</div>
 
-<main class="container" id="tools">
-  <h2 class="section-title">Explore free tools</h2>
-  <p class="section-sub">Useful tools for your everyday tasks.</p>
+<main class="wrap" id="tools">
+ <h2 class="heading">Explore all tools</h2>
+ <p class="sub">Useful tools for creators, students, professionals and everyone.</p>
+ <div class="filters" id="filters"></div>
+ <div class="grid" id="grid"></div>
 
-  <div class="categories">
-    <button class="chip active" onclick="filterTools('All',this)">All tools</button>
-    <button class="chip" onclick="filterTools('Text',this)">Text tools</button>
-    <button class="chip" onclick="filterTools('Calculator',this)">Calculators</button>
-    <button class="chip" onclick="filterTools('Generator',this)">Generators</button>
+ <section class="workspace" id="workspace">
+  <div class="worktop">
+   <h2 id="toolTitle">Tool</h2>
+   <button class="icon-btn" onclick="closeTool()">✕</button>
   </div>
+  <p id="toolDesc"></p>
+  <div class="fields" id="fields"></div>
+  <div class="actions" id="actions"></div>
+  <div class="output" id="output" aria-live="polite"></div>
+ </section>
 
-  <div class="grid" id="toolGrid"></div>
-
-  <section class="workspace" id="workspace">
-    <h2 id="toolTitle">Tool</h2>
-    <p id="toolDescription">Use this free tool.</p>
-    <div id="toolInputs"></div>
-    <div class="actions" id="toolActions"></div>
-    <div id="toolResult"></div>
-  </section>
-
-  <div class="ad">ADVERTISEMENT SPACE</div>
-
-  <section id="about">
-    <h2 class="section-title">Why Toolora?</h2>
-    <p class="section-sub">Simple tools designed to save your time. Free to use on mobile, tablet and desktop.</p>
-  </section>
+ <div class="ad">ADVERTISEMENT SPACE</div>
+ <h2 class="heading">One place. More possibilities.</h2>
+ <p class="sub">Toolora helps you get everyday digital work done quickly from your phone or computer.</p>
 </main>
 
 <footer>
-  <div class="logo">tool<span>ora.</span></div>
-  <p>Free tools for everyone, everywhere.</p>
-  <p>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms</a>
-    <a href="contact.html">Contact</a>
-  </p>
-  © 2026 Toolora. All rights reserved.
+ <div class="brand">tool<span>ora.</span></div>
+ <p>Free tools for everyone, everywhere.</p>
+ <p>
+ <a href="about.html">About</a>
+ <a href="privacy.html">Privacy</a>
+ <a href="terms.html">Terms</a>
+ <a href="contact.html">Contact</a>
+ </p>
+ © 2026 Toolora. All rights reserved.
 </footer>
 
 <script>
 const tools=[
- {name:"Word Counter",icon:"📝",cat:"Text",desc:"Count words, characters and sentences.",id:"word"},
- {name:"Case Converter",icon:"🔠",cat:"Text",desc:"Convert text into different letter cases.",id:"case"},
- {name:"Percentage Calculator",icon:"％",cat:"Calculator",desc:"Calculate percentages in seconds.",id:"percent"},
- {name:"EMI Calculator",icon:"🏦",cat:"Calculator",desc:"Estimate your monthly loan EMI.",id:"emi"},
- {name:"Age Calculator",icon:"🎂",cat:"Calculator",desc:"Calculate your exact age.",id:"age"},
- {name:"BMI Calculator",icon:"⚖️",cat:"Calculator",desc:"Calculate your body mass index.",id:"bmi"},
- {name:"Password Generator",icon:"🔐",cat:"Generator",desc:"Create a random strong password.",id:"password"},
- {name:"Lorem Ipsum Generator",icon:"📄",cat:"Generator",desc:"Generate placeholder text.",id:"lorem"}
+["word","📝","Word Counter","Text","Count words, characters and sentences."],
+["case","🔠","Case Converter","Text","Convert uppercase, lowercase and title case."],
+["duplicate","🧹","Remove Duplicate Lines","Text","Remove repeated lines from text."],
+["reverse","↔️","Text Reverser","Text","Reverse your text instantly."],
+["char","🔡","Character Counter","Text","Count characters with and without spaces."],
+
+["percent","％","Percentage Calculator","Calculator","Calculate percentages quickly."],
+["discount","🏷️","Discount Calculator","Calculator","Calculate discounts and savings."],
+["gst","🇮🇳","GST Calculator India","Calculator","Calculate GST inclusive and exclusive."],
+["emi","🏦","EMI Calculator","Calculator","Estimate monthly loan payments."],
+["age","🎂","Age Calculator","Calculator","Calculate your age from date of birth."],
+["bmi","⚖️","BMI Calculator","Calculator","Calculate body mass index."],
+
+["unit","📏","Length Converter","Converter","Convert metres, centimetres, feet and inches."],
+
+["password","🔐","Password Generator","Generator","Generate random passwords."],
+["uuid","🆔","UUID Generator","Generator","Create a random UUID."],
+["random","🎲","Random Number Generator","Generator","Generate random numbers."],
+["lorem","📄","Lorem Ipsum Generator","Generator","Generate placeholder paragraphs."],
+
+["json","{ }","JSON Formatter","Developer","Format and validate JSON."],
+["url","🔗","URL Encoder / Decoder","Developer","Encode or decode URL text."],
+["base64","🔒","Base64 Encoder / Decoder","Developer","Encode or decode Base64 text."],
+["timestamp","🕒","Unix Timestamp Converter","Developer","Convert Unix timestamps to dates."],
+
+["caption","✍️","Social Caption Generator","Creator","Create social media caption ideas."],
+["hashtags","＃","Hashtag Generator","Creator","Generate relevant hashtag ideas."],
+["yt-title","▶️","YouTube Title Generator","Creator","Create catchy YouTube titles."],
+["yt-desc","📺","YouTube Description Generator","Creator","Create structured video descriptions."],
+["script","🎤","Short Video Script Writer","Creator","Create short video script drafts."],
+["hook","🧲","Viral Hook Generator","Creator","Generate opening hook ideas."],
+["bio","👤","Instagram Bio Generator","Creator","Create Instagram bio ideas."],
+["thumbnail","🖼️","Thumbnail Text Ideas","Creator","Generate thumbnail text ideas."],
+["content-calendar","📅","Content Calendar Generator","Creator","Create a seven-day content plan."],
+["keyword","🔎","Keyword Idea Generator","Creator","Generate keyword variations."],
+["reel","📱","Reels Idea Generator","Creator","Generate short video ideas."],
+
+["video","🎬","Video Studio","Video","Preview local videos with basic editing controls."]
 ];
 
-const grid=document.getElementById("toolGrid");
-function render(list){
- grid.innerHTML=list.map(t=>`
- <article class="tool" onclick="openTool('${t.id}')">
-  <div class="tool-icon">${t.icon}</div>
-  <h3>${t.name}</h3><p>${t.desc}</p><small>Open tool →</small>
- </article>`).join("");
-}
-render(tools);
+const categories=["All","Text","Calculator","Converter","Generator","Developer","Creator","Video"];
+let active="All",current="",videoURL=null,videoLoop=null;
+const $=id=>document.getElementById(id);
 
-function filterTools(cat,btn){
- document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
- btn.classList.add("active");
- render(cat==="All"?tools:tools.filter(t=>t.cat===cat));
+function renderFilters(){
+ $("filters").innerHTML=categories.map(c=>
+ `<button class="chip ${active===c?"active":""}" onclick="filter('${c}')">${c==="All"?"✦ All tools":c}</button>`
+ ).join("");
+}
+function render(list){
+ $("grid").innerHTML=list.length?list.map(t=>`
+ <article class="tool" onclick="openTool('${t[0]}')">
+ <div class="tool-icon">${t[1]}</div>
+ <h3>${t[2]}</h3><p>${t[4]}</p>
+ <div class="open">Open tool →</div>
+ </article>`).join(""):"<p>No tools found. Try another search.</p>";
+}
+function filter(c){
+ active=c;renderFilters();
+ let q=$("search").value.toLowerCase();
+ render(tools.filter(t=>(c==="All"||t[3]===c)&&
+ (t[2]+" "+t[4]).toLowerCase().includes(q)));
 }
 function searchTools(){
- const q=document.getElementById("searchInput").value.toLowerCase();
- render(tools.filter(t=>(t.name+" "+t.desc).toLowerCase().includes(q)));
+ active="All";renderFilters();
+ let q=$("search").value.toLowerCase();
+ render(tools.filter(t=>(t[2]+" "+t[4]+" "+t[3]).toLowerCase().includes(q)));
 }
-
-const inputs=document.getElementById("toolInputs");
-const actions=document.getElementById("toolActions");
-const result=document.getElementById("toolResult");
-let current="";
-
-function field(id,label,type="number",placeholder=""){
- return `<label>${label}</label><input id="${id}" type="${type}" placeholder="${placeholder}">`;
+function field(id,label,type="text",placeholder=""){
+ return `<div class="field"><label for="${id}">${label}</label><input id="${id}" type="${type}" placeholder="${placeholder}"></div>`;
 }
-function button(label,fn){
- return `<button class="primary" onclick="${fn}">${label}</button>`;
+function area(id,label,placeholder="Type or paste here..."){
+ return `<div class="field full"><label for="${id}">${label}</label><textarea id="${id}" placeholder="${placeholder}"></textarea></div>`;
+}
+function selectField(id,label,options){
+ return `<div class="field"><label for="${id}">${label}</label><select id="${id}">${options.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join("")}</select></div>`;
 }
 function openTool(id){
  current=id;
- const t=tools.find(x=>x.id===id);
- document.getElementById("toolTitle").textContent=t.name;
- document.getElementById("toolDescription").textContent=t.desc;
- result.innerHTML="";
- actions.innerHTML="";
- inputs.innerHTML="";
+ let t=tools.find(x=>x[0]===id);
+ $("toolTitle").textContent=t[1]+" "+t[2];
+ $("toolDesc").textContent=t[4];
+ $("fields").innerHTML="";
+ $("actions").innerHTML="";
+ $("output").textContent="";
+ const F=(...a)=>$("fields").innerHTML+=field(...a);
+ const A=(...a)=>$("fields").innerHTML+=area(...a);
+ const S=(...a)=>$("fields").innerHTML+=selectField(...a);
+ const B=(label,fn="runTool()")=>$("actions").innerHTML+=`<button class="btn" onclick="${fn}">${label}</button>`;
+ const C=()=> $("actions").innerHTML+=`<button class="btn soft" onclick="copyOutput()">Copy result</button>`;
 
- if(id==="word"){
-  inputs.innerHTML='<textarea id="text" placeholder="Type or paste your text here..." oninput="countWords()"></textarea><div id="wordStats" class="stats"></div>';
-  actions.innerHTML=button("Copy text","copyValue('text')");
- }
- if(id==="case"){
-  inputs.innerHTML='<textarea id="text" placeholder="Enter your text..."></textarea>';
-  actions.innerHTML=button("UPPERCASE","convertCase('upper')")+button("lowercase","convertCase('lower')")+button("Title Case","convertCase('title')")+button("Copy","copyValue('text')");
- }
- if(id==="percent"){
-  inputs.innerHTML=field("p","Percentage (%)")+field("n","Number");
-  actions.innerHTML=button("Calculate","calcPercent()");
+ if(["word","case","duplicate","reverse","char","json","url","base64"].includes(id))A("text","Your text");
+ if(id==="percent"){F("a","Percentage (%)","number");F("b","Number","number")}
+ if(id==="discount"){F("price","Original price (₹)","number");F("discount","Discount (%)","number")}
+ if(id==="gst"){
+ F("amount","Amount (₹)","number");
+ F("gstRate","GST rate (%)","number","18");
+ S("gstMode","Calculation",[["add","Add GST"],["remove","Remove GST"]]);
  }
  if(id==="emi"){
-  inputs.innerHTML=field("loan","Loan amount (₹)")+field("rate","Annual interest rate (%)")+field("months","Loan duration (months)");
-  actions.innerHTML=button("Calculate EMI","calcEMI()");
+ F("principal","Loan amount (₹)","number");
+ F("interest","Annual interest rate (%)","number");
+ F("duration","Duration (months)","number");
  }
- if(id==="age"){
-  inputs.innerHTML=field("dob","Date of birth","date");
-  actions.innerHTML=button("Calculate age","calcAge()");
- }
- if(id==="bmi"){
-  inputs.innerHTML=field("weight","Weight (kg)")+field("height","Height (cm)");
-  actions.innerHTML=button("Calculate BMI","calcBMI()");
+ if(id==="age")F("dob","Date of birth","date");
+ if(id==="bmi"){F("weight","Weight (kg)","number");F("height","Height (cm)","number")}
+ if(id==="unit"){
+ F("unitValue","Value","number");
+ S("fromUnit","From",[["m","Metres"],["km","Kilometres"],["cm","Centimetres"],["mm","Millimetres"],["ft","Feet"],["in","Inches"]]);
+ S("toUnit","To",[["cm","Centimetres"],["m","Metres"],["km","Kilometres"],["mm","Millimetres"],["ft","Feet"],["in","Inches"]]);
  }
  if(id==="password"){
-  inputs.innerHTML=field("length","Password length (8–64)");
-  actions.innerHTML=button("Generate password","generatePassword");
+ F("length","Password length (8–64)","number","16");
+ S("symbols","Include symbols?",[["yes","Yes"],["no","No"]]);
  }
- if(id==="lorem"){
-  inputs.innerHTML=field("count","Number of paragraphs");
-  actions.innerHTML=button("Generate text","generateLorem");
+ if(id==="random"){
+ F("min","Minimum number","number","1");
+ F("max","Maximum number","number","100");
+ F("quantity","How many numbers?","number","1");
  }
- document.getElementById("workspace").classList.add("show");
- document.getElementById("workspace").scrollIntoView({behavior:"smooth",block:"start"});
-}
+ if(id==="lorem")F("paragraphs","Number of paragraphs","number","3");
+ if(id==="timestamp")F("stamp","Unix timestamp (seconds)","number");
 
-function val(id){return Number(document.getElementById(id).value)}
-function show(html){result.innerHTML='<div class="result">'+html+'</div>'}
-function countWords(){
- const s=document.getElementById("text").value;
- const words=s.trim()?s.trim().split(/\s+/).length:0;
- const sentences=s.trim()?(s.match(/[.!?]+/g)||[]).length:0;
- document.getElementById("wordStats").innerHTML=
- `<span>Words: <b>${words}</b></span><span>Characters: <b>${s.length}</b></span><span>Sentences: <b>${sentences}</b></span>`;
+ if(["caption","hashtags","yt-title","yt-desc","script","hook","bio","thumbnail","content-calendar","keyword","reel"].includes(id)){
+ F("topic","Topic / niche","text","e.g. Telugu folk music");
+ F("keywords","Keywords (optional)","text","e.g. new songs, Telugu");
+ S("platform","Platform",[
+ ["instagram","Instagram"],["youtube","YouTube"],
+ ["shorts","YouTube Shorts"],["reels","Instagram Reels"],
+ ["facebook","Facebook"]
+ ]);
+ }
+ if(id==="video"){
+ $("fields").innerHTML+=`
+ <div class="field full">
+ <label>Select a video from your phone</label>
+ <input id="videoFile" type="file" accept="video/*" onchange="loadVideo(this)">
+ </div>
+ <div class="field full">
+ <div class="video-stage">
+ <video id="videoPlayer" controls playsinline></video>
+ <div id="videoOverlay"></div>
+ </div></div>
+ <div class="field"><label>Start time (seconds)</label>
+ <input id="videoStart" type="number" min="0" value="0"></div>
+ <div class="field"><label>End time (seconds)</label>
+ <input id="videoEnd" type="number" min="0" value="10"></div>
+ <div class="field"><label>Playback speed</label>
+ <select id="videoSpeed">
+ <option value=".5">0.5x</option><option value="1" selected>1x</option>
+ <option value="1.5">1.5x</option><option value="2">2x</option>
+ </select></div>
+ <div class="field"><label>Text overlay</label>
+ <input id="overlayText" placeholder="Enter video text"></div>`;
+ $("actions").innerHTML=`
+ <button class="btn" onclick="previewVideo()">Preview section</button>
+ <button class="btn soft" onclick="applyOverlay()">Apply text overlay</button>`;
+ }else if(id==="case"){
+ $("actions").innerHTML=`
+ <button class="btn" onclick="runTool('upper')">UPPERCASE</button>
+ <button class="btn soft" onclick="runTool('lower')">lowercase</button>
+ <button class="btn soft" onclick="runTool('title')">Title Case</button>`;
+ }else if(id==="url"||id==="base64"){
+ $("actions").innerHTML=`
+ <button class="btn" onclick="runTool('encode')">Encode</button>
+ <button class="btn soft" onclick="runTool('decode')">Decode</button>`;
+ }else if(["caption","hashtags","yt-title","yt-desc","script","hook","bio","thumbnail","content-calendar","keyword","reel"].includes(id)){
+ B("Generate ideas");C();
+ }else{
+ B(id==="uuid"?"Generate UUID":id==="password"?"Generate password":"Calculate / Process");
+ C();
+ }
+ $("workspace").classList.add("show");
+ $("workspace").scrollIntoView({behavior:"smooth",block:"start"});
 }
-function convertCase(type){
- const e=document.getElementById("text");
- if(type==="upper")e.value=e.value.toUpperCase();
- if(type==="lower")e.value=e.value.toLowerCase();
- if(type==="title")e.value=e.value.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
-}
-function calcPercent(){
- let p=val("p"),n=val("n");
- if(!Number.isFinite(p)||!Number.isFinite(n))return show("Enter valid numbers.");
- show(`${p}% of ${n} = <b>${(p*n/100).toFixed(2)}</b>`);
-}
-function calcEMI(){
- let P=val("loan"),annual=val("rate"),months=val("months");
- if(P<=0||annual<0||months<=0)return show("Enter valid loan details.");
- let r=annual/1200;
- let emi=r===0?P/months:P*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1);
- show(`Monthly EMI: <b>₹${emi.toFixed(2)}</b><br>Total payment: ₹${(emi*months).toFixed(2)}<br>Total interest: ₹${(emi*months-P).toFixed(2)}`);
-}
-function calcAge(){
- let d=new Date(document.getElementById("dob").value);
- if(isNaN(d)||d>new Date())return show("Enter a valid date of birth.");
- let now=new Date(),years=now.getFullYear()-d.getFullYear(),months=now.getMonth()-d.getMonth();
- if(now.getDate()<d.getDate())months--;
- if(months<0){years--;months+=12}
- show(`Your age is <b>${years} years and ${months} months</b>.`);
-}
-function calcBMI(){
- let w=val("weight"),h=val("height")/100;
- if(w<=0||h<=0)return show("Enter valid height and weight.");
- let bmi=w/(h*h);
- let category=bmi<18.5?"Underweight":bmi<25?"Normal range":bmi<30?"Overweight":"Obesity range";
- show(`Your BMI: <b>${bmi.toFixed(1)}</b><br>Category: ${category}<br><small>BMI is a screening measure, not a diagnosis.</small>`);
-}
-function generatePassword(){
- let length=Math.max(8,Math.min(64,Math.floor(val("length")||16)));
- let chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%&*?";
- let arr=new Uint32Array(length);crypto.getRandomValues(arr);
- let password=Array.from(arr,x=>chars[x%chars.length]).join("");
- show(`<span id="generated">${password}</span><br><br><button class="secondary" onclick="copyGenerated()">Copy password</button>`);
-}
-function copyGenerated(){navigator.clipboard.writeText(document.getElementById("generated").textContent).then(()=>alert("Copied!"))}
-function generateLorem(){
- let n=Math.max(1,Math.min(10,Math.floor(val("count")||1)));
- let sentence="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed arcu aliquet commodo. ";
- show(Array.from({length:n},()=>sentence.repeat(3)).join("<br><br>"));
-}
-function copyValue(id){
- navigator.clipboard.writeText(document.getElementById(id).value)
- .then(()=>alert("Copied to clipboard!"))
- .catch(()=>alert("Copy is not supported in this browser."));
-}
-</script>
-</body>
-</html>
+function closeTool(){$("workspace").classList.remove("show")}
+function v(id){return $(id).value}
+function num(id){return Number(v(id))}
+function out(s){$("output").textContent=String(s)}
+
+function runTool(mode=""){
+ try{
+ let s=$("text")?v("text"):"";
+ switch(current){
+ case"word":{
+ let w=s.trim()?s.trim().split(/\s+/).length:0;
+ out(`Words: ${w}\nCharacters: ${s.length}\nCharacters without spaces: ${s.replace(/\s/g,"").length}\nSentences: ${(s.match(/[.!?]+/g)||[]).length}`);break}
+ case"char":
+ out(`Characters: ${s.length}\nWithout spaces: ${s.replace(/\s/g,"").length}\nWords: ${s.trim()?s.trim().split(/\s+/).length:0}`);break;
+ case"case":
+ out(mode==="upper"?s.toUpperCase():mode==="lower"?s.toLowerCase():s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase()));break;
+ case"duplicate":out([...new Set(s.split(/\r?\n/))].join("\n"));break;
+ case"reverse":out([...s].reverse().join(""));break;
+ case"percent":
+ if(!Number.isFinite(num("a"))||!Number.isFinite(num("b")))throw Error("Enter valid numbers.");
+ out(`${num("a")}% of ${num("b")} = ${(num("a")*num("b")/100).toFixed(2)}`);break;
+ case"discount":{
+ let p=num("price"),d=num("discount");
+ if(p<0||d<0||d>100)throw Error("Enter a valid price and discount.");
+ out(`Final price: ₹${(p*(1-d/100)).toFixed(2)}\nYou save: ₹${(p*d/100).toFixed(2)}`);break}
+ case"gst":{
+ let a=num("amount"),r=num("gstRate")/100;
+ if(a<0||r<0)throw Error("Enter valid values.");
+ let base=v("gstMode")==="add"?a:a/(1+r);
+ let tax=v("gstMode")==="add"?a*r:a-base;
+ out(`Base amount: ₹${base.toFixed(2)}\nGST: ₹${tax.toFixed(2)}\nTotal including GST: ₹${(base+tax).toFixed(2)}`);break}
+ case"emi":{
+ let p=num("principal"),r=num("interest")/1200,n=num("duration");
+ if(p<=0||n<=0||r<0)throw Error("Enter valid loan details.");
+ let e=r===0?p/n:p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+ out(`Monthly EMI: ₹${e.toFixed(2)}\nTotal payment: ₹${(e*n).toFixed(2)}\nTotal interest: ₹${(e*n-p).toFixed(2)}`);break}
+ case"age":{
+ let d=new Date(v("dob"));
+ if(!v("dob")||isNaN(d)||d>new Date())throw Error("Enter a valid date of birth.");
+ let n=new Date(),y=n.getFullYear()-d.getFullYear(),m=n.getMonth()-d.getMonth();
+ if(n.getDate()<d.getDate())m--;
+ if(m<0){y--;m+=12}
+ out(`Your age: ${y} years and ${m} months`);break}
+ case"bmi":{
+ let w=num("weight"),h=num("height")/100;
+ if(w<=0||h<=0)throw Error("Enter valid height and weight.");
+ let b=w/(h*h);
+ out(`BMI: ${b.toFixed(1)}\nCategory: ${b<18.5?"Underweight":b<25?"Normal range":b<30?"Overweight":"Obesity range"}\nBMI is a screening measure, not a diagnosis.`);break}
+ case"unit":{
+ let factors={m:1,km:1000,cm:.01,mm:.001,ft:.3048,in:.0254};
+ let z=num("unitValue")*factors[v("fromUnit")]/factors[v("toUnit")];
+ out(`${num("unitValue")} ${v("fromUnit")} = ${z.toFixed(6)} ${v("toUnit")}`);break}
+ case"password":{
+ let n=Math.max(8,Math.min(64,Math.floor(num("length")||16)));
+ let chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789"+(v("symbols")==="yes"?"!@#$%&*?":"");
+ let a=new Uint32Array(n);crypto.getRandomValues(a);
+ out([...a].map(x=>chars[x%chars.length]).join("
